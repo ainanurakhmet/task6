@@ -264,3 +264,109 @@ Content-Type: application/json
 4. Дает советы по организации коллекции в Postman
 5. Подходит как для начинающих, так и для опытных пользователей
 ```
+
+
+
+
+## Пользователи API
+
+#### Получение всех пользователей
+**URL:** `GET http://localhost:3000/users`
+
+**Пример ответа (200 OK):**
+```json
+[
+  {
+    "id": 1,
+    "fullName": "Аскар Демир",
+    "job": "Backend Developer",
+    "age": 32,
+    "city": "Алматы"
+  },
+  {
+    "id": 2,
+    "fullName": "Алина Салимова",
+    "job": "Frontend Developer",
+    "age": 28,
+    "city": "Астана"
+  }
+  // и так далее...
+]
+
+
+Получение пользователя по ID
+URL: GET http://localhost:3000/users/1
+
+Пример ответа (200 OK):
+{
+  "id": 1,
+  "fullName": "Аскар Демир",
+  "job": "Backend Developer",
+  "age": 32,
+  "city": "Алматы"
+}
+
+Ошибка (404 Not Found):
+{
+  "error": "Пользователь с ID 999 не найден"
+}
+
+Создание пользователя
+URL: POST http://localhost:3000/users
+
+Headers:
+Content-Type: application/json
+
+
+Тело запроса:
+{
+  "fullName": "Иван Иванов",
+  "job": "Developer",
+  "age": 30,
+  "city": "Москва"
+}
+
+Пример ответа (201 Created):
+{
+  "id": 6,
+  "fullName": "Иван Иванов",
+  "job": "Developer",
+  "age": 30,
+  "city": "Москва"
+}
+
+
+Обновление пользователя
+URL: PUT http://localhost:3000/users/1
+
+Headers:
+
+Content-Type: application/json
+
+Тело запроса:
+{
+  "fullName": "Иван Петров",
+  "job": "Senior Developer",
+  "age": 31,
+  "city": "Москва"
+}
+
+Пример ответа (200 OK):
+{
+  "id": 1,
+  "fullName": "Иван Петров",
+  "job": "Senior Developer",
+  "age": 31,
+  "city": "Москва"
+}
+
+Удаление пользователя (с каскадным удалением задач)
+URL: DELETE http://localhost:3000/users/1
+
+Успешный ответ:
+Статус 204 No Content (тело ответа пустое)
+
+Ошибка (404 Not Found):
+{
+  "error": "Пользователь с ID 999 не найден"
+}
