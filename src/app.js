@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const logger = require("./middleware/logger");
 const tasksRouter = require("./routes/tasks");
+const usersRouter = require("./routes/users"); 
 
 // Глобальные middleware
 app.use(express.json()); // Парсинг JSON-тела запроса
@@ -9,6 +10,7 @@ app.use(logger); // Логирование запросов
 
 // Подключение маршрутов
 app.use("/tasks", tasksRouter);
+app.use("/users", usersRouter);
 
 // Обработка ошибок 404 (не найден)
 app.use((req, res) => {
